@@ -33,13 +33,14 @@ public class Event {
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "event_tag",
         joinColumns = @JoinColumn(name = "event_id"),
         inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private List<Tag> tags = new ArrayList<>(); // Initialize to avoid null pointer exceptions
+    private List<Tag> tags = new ArrayList<>();
+
 
     // Default constructor
     public Event() {}
